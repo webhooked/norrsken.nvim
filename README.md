@@ -2,7 +2,7 @@
 
 <p align="center"><a href="https://norrsken.dev/">Norrsken</a> colorscheme for <a href="https://neovim.io/">NEOVIM</a> written in Lua</p>
 
-<!-- ![norrsken.nvim](./assets/showcase.png) -->
+![norrsken.nvim](./assets/showcase.png)
 
 ## ✔️ Requirements
 
