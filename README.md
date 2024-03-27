@@ -124,8 +124,11 @@ norrsken.setup({
   transparent_bg = true, -- default false
   -- set custom lualine background color
   lualine_bg_color = "#101012", -- default nil
-  -- set italic comment
-  italic_comment = true, -- default false
+  -- set italics
+  italics {
+    comments = true, -- default false
+    keywords = true, -- default false
+  },
   -- overrides the default highlights with table see `:h synIDattr`
   overrides = {},
   -- You can use overrides as table like this
