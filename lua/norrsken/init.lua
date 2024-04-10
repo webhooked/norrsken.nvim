@@ -37,12 +37,12 @@ local TRANSPARENTS = {
 
 local function apply_term_colors(colors)
    g.terminal_color_0 = colors.black
-   g.terminal_color_1 = colors.red
-   g.terminal_color_2 = colors.green
-   g.terminal_color_3 = colors.yellow
-   g.terminal_color_4 = colors.purple
-   g.terminal_color_5 = colors.pink
-   g.terminal_color_6 = colors.cyan
+   g.terminal_color_1 = colors.flare
+   g.terminal_color_2 = colors.aurora
+   g.terminal_color_3 = colors.glow
+   g.terminal_color_4 = colors.twilight
+   g.terminal_color_5 = colors.sky
+   g.terminal_color_6 = colors.nebula
    g.terminal_color_7 = colors.white
    g.terminal_color_8 = colors.selection
    g.terminal_color_9 = colors.bright_red

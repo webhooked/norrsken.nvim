@@ -5,19 +5,19 @@ local colors = norrsken.colors()
 local bg = configs.lualine_bg_color or colors.black
 
 local normal = {
-    a = { fg = colors.black, bg = colors.purple, gui = 'bold' },
-    b = { fg = colors.purple, bg = bg },
+    a = { fg = colors.black, bg = colors.twilight, gui = 'bold' },
+    b = { fg = colors.twilight, bg = bg },
     c = { fg = colors.white, bg = bg },
 }
 
 local command = {
-    a = { fg = colors.black, bg = colors.cyan, gui = 'bold' },
-    b = { fg = colors.cyan, bg = bg },
+    a = { fg = colors.black, bg = colors.nebula, gui = 'bold' },
+    b = { fg = colors.nebula, bg = bg },
 }
 
 local visual = {
-    a = { fg = colors.black, bg = colors.pink, gui = 'bold' },
-    b = { fg = colors.pink, bg = bg },
+    a = { fg = colors.black, bg = colors.sky, gui = 'bold' },
+    b = { fg = colors.sky, bg = bg },
 }
 
 local inactive = {
@@ -26,14 +26,14 @@ local inactive = {
 }
 
 local replace = {
-    a = { fg = colors.black, bg = colors.yellow, gui = 'bold' },
-    b = { fg = colors.yellow, bg = bg },
+    a = { fg = colors.black, bg = colors.glow, gui = 'bold' },
+    b = { fg = colors.glow, bg = bg },
     c = { fg = colors.white, bg = bg },
 }
 
 local insert = {
-    a = { fg = colors.black, bg = colors.green, gui = 'bold' },
-    b = { fg = colors.green, bg = bg },
+    a = { fg = colors.black, bg = colors.aurora, gui = 'bold' },
+    b = { fg = colors.aurora, bg = bg },
     c = { fg = colors.white, bg = bg },
 }
 
