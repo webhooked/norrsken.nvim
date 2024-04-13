@@ -2,7 +2,7 @@
 return {
    bg = "#191920",
    fg = "#F8F8F8",
-   selection = "#707077",
+   selection = "#202026",
    comment = "#707077",
    flare = "#ff2e18",
    shimmer = "#b5b5fe",
@@ -19,7 +19,7 @@ return {
    bright_cyan = "#4fe1c5",
    bright_white = "#FFFFFF",
    menu = "#191920",
-   visual = "#202026",
+   visual = "#707077",
    gutter_fg = "#202026",
    nontext = "#202026",
    white = "#B2B2B2",
