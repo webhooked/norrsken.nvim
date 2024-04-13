@@ -2,7 +2,7 @@
 return {
    bg = "#191920",
    fg = "#F8F8F8",
-   selection = "#202026",
+   selection = "#707077",
    comment = "#707077",
    flare = "#ff2e18",
    shimmer = "#b5b5fe",
