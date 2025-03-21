@@ -4,6 +4,10 @@ local cmd = vim.cmd
 local nvim_set_hl = vim.api.nvim_set_hl
 local tbl_deep_extend = vim.tbl_deep_extend
 
+---@class NorrskenBackgroundConfig
+---@field light string?
+---@field dark string?
+
 ---@class NorrskenConfig
 ---@field comments boolean
 ---@field keywords boolean
@@ -12,6 +16,7 @@ local tbl_deep_extend = vim.tbl_deep_extend
 ---@field lualine_bg_color string?
 ---@field colors Palette
 ---@field theme string?
+---@field background NorrskenBackgroundConfig?
 ---@field overrides HighlightGroups | fun(colors: Palette): HighlightGroups
 local DEFAULT_CONFIG = {
    italics = {
@@ -24,6 +29,7 @@ local DEFAULT_CONFIG = {
    colors = require("norrsken.palette"),
    overrides = {},
    theme = "norrsken",
+   background = nil,
 }
 
 local TRANSPARENTS = {
@@ -33,6 +39,18 @@ local TRANSPARENTS = {
    "NvimTreeVertSplit",
    "NeoTreeNormal",
    "NeoTreeNormalNC",
+}
+
+-- Selection-related highlight groups that need to be updated when variant changes
+local SELECTION_GROUPS = {
+   { name = "CursorLine", color = "selection" },
+   { name = "ColorColumn", color = "selection" },
+   { name = "Visual", color = "visual" },
+   { name = "VisualNOS", color = "visual" },
+   { name = "PmenuSel", color = "selection" },
+   { name = "TelescopeSelection", color = "selection" },
+   { name = "TelescopeMultiSelection", color = "selection" },
+   { name = "NvimTreeCursorLine", color = "selection" }
 }
 
 local function apply_term_colors(colors)
@@ -67,10 +85,61 @@ local function override_groups(groups, overrides)
    return groups
 end
 
+-- Apply theme variant
+---@param palette Palette
+---@param variant string
+---@return Palette
+local function apply_variant(palette, variant)
+   local result = vim.tbl_deep_extend("force", {}, palette)
+   
+   if variant == "svalbard" then
+      result.bg = palette.svalbard_bg
+      result.menu = palette.svalbard_menu
+      result.black = palette.svalbard_black
+      result.selection = palette.svalbard_selection
+      result.visual = palette.svalbard_visual
+   elseif variant == "kiruna" then
+      result.bg = palette.kiruna_bg
+      result.menu = palette.kiruna_menu
+      result.black = palette.kiruna_black
+      result.selection = palette.kiruna_selection
+      result.visual = palette.kiruna_visual
+   elseif variant == "reykjavik" then
+      result.bg = palette.reykjavik_bg
+      result.menu = palette.reykjavik_menu
+      result.black = palette.reykjavik_black
+      result.selection = palette.reykjavik_selection
+      result.visual = palette.reykjavik_visual
+   end
+   
+   return result
+end
+
 ---apply norrsken colorscheme
 ---@param configs NorrskenConfig
 local function apply(configs)
    local colors = configs.colors
+   local theme_to_apply = configs.theme
+   
+   -- Check if we should use a background-specific variant
+   if configs.background then
+      local current_bg = o.background
+      if current_bg == "dark" and configs.background.dark then
+         theme_to_apply = "norrsken-" .. configs.background.dark
+      elseif current_bg == "light" and configs.background.light then
+         theme_to_apply = "norrsken-" .. configs.background.light
+      end
+   end
+   
+   -- Apply theme variant if specified
+   if theme_to_apply == "norrsken-svalbard" then
+      colors = apply_variant(colors, "svalbard")
+   elseif theme_to_apply == "norrsken-kiruna" then
+      colors = apply_variant(colors, "kiruna")
+   elseif theme_to_apply == "norrsken-reykjavik" then
+      colors = apply_variant(colors, "reykjavik")
+   end
+   
    apply_term_colors(colors)
    local groups = require("norrsken.groups").setup(configs)
 
@@ -91,6 +160,17 @@ local function apply(configs)
    for group, setting in pairs(groups) do
       nvim_set_hl(0, group, setting)
    end
+   
+   -- Force apply background color to Normal
+   vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg })
+   
+   -- Force apply selection color to selection-related highlight groups
+   for _, group in ipairs(SELECTION_GROUPS) do
+      local existing = vim.api.nvim_get_hl(0, { name = group.name })
+      if existing then
+         vim.api.nvim_set_hl(0, group.name, { bg = colors[group.color] })
+      end
+   end
 end
 
 ---@type NorrskenConfig
@@ -101,8 +181,11 @@ local user_configs = {}
 local function get_configs()
    local configs = DEFAULT_CONFIG
 
-   if g.colors_name == "norrsken" then
-      configs.theme = "norrsken"
+   if g.colors_name == "norrsken" or 
+      g.colors_name == "norrsken-svalbard" or 
+      g.colors_name == "norrsken-kiruna" or 
+      g.colors_name == "norrsken-reykjavik" then
+      configs.theme = g.colors_name
       configs.colors = require("norrsken.palette")
    end
 
@@ -136,7 +219,6 @@ local function load(theme)
       cmd("syntax reset")
    end
 
-   o.background = "dark"
    o.termguicolors = true
    g.colors_name = theme or "norrsken"
 

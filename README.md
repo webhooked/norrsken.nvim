@@ -52,6 +52,32 @@ vim.cmd[[colorscheme norrsken]]
 colorscheme norrsken
 ```
 
+### Theme Variants
+
+Norrsken now comes with three background variants:
+
+```lua
+-- Standard (Reykjavík variant)
+vim.cmd[[colorscheme norrsken]]
+
+-- Darker (Svalbard variant)
+vim.cmd[[colorscheme norrsken-svalbard]]
+
+-- Medium dark (Kiruna variant)
+vim.cmd[[colorscheme norrsken-kiruna]]
+```
+
+```vim
+" Standard (Reykjavík variant)
+colorscheme norrsken
+
+" Darker (Svalbard variant)
+colorscheme norrsken-svalbard
+
+" Medium dark (Kiruna variant)
+colorscheme norrsken-kiruna
+```
+
 If you are using [`lualine`](https://github.com/hoob3rt/lualine.nvim), you can also enable the provided theme:
 
 > Make sure to set theme as 'norrsken-nvim' as norrsken already exists in lualine built in themes
@@ -77,7 +103,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "norrsken",
+      colorscheme = "norrsken", -- or "norrsken-svalbard" or "norrsken-kiruna"
     },
   },
 }
@@ -93,30 +119,49 @@ local norrsken = require("norrsken")
 norrsken.setup({
   -- customize norrsken color palette
   colors = {
-      bg = "#191920",
-      fg = "#f8f8f8",
-      selection = "#707077",
-      comment = "#707077",
+      bg = "#222330",
+      fg = "#F7F7FD",
+      selection = "#303040",
+      comment = "#606070",
       flare = "#ff2e18",
-      shimmer = "#b5b5fe",
-      glow = "#f9fc45",
-      aurora = "#67f0ab",
-      twilight = "#7e7dfd",
-      nebula = "#4fe1c5",
-      sky = "#37d3e0",
-      bright_red = "#ff999e",
-      bright_green = "#67f0ab",
-      bright_yellow = "#f9fc45",
-      bright_blue = "#37d3e0",
-      bright_magenta = "#7e7dfd",
-      bright_cyan = "#4fe1c5",
-      bright_white = "#ffffff",
-      menu = "#191920",
-      visual = "#202026",
-      gutter_fg = "#202026",
-      nontext = "#202026",
-      white = "#b2b2b2",
-      black = "#191920",
+      shimmer = "#AEDCFE",
+      glow = "#98FFC7",
+      aurora = "#F5F394",
+      twilight = "#BBC4D8",
+      nebula = "#98FFC7",
+      sky = "#9580ff",
+      bright_red = "#ff2e18",
+      bright_green = "#98FFC7",
+      bright_yellow = "#F5F394",
+      bright_blue = "#9580ff",
+      bright_magenta = "#BBC4D8",
+      bright_cyan = "#F7F7FD",
+      bright_white = "#FFFFFF",
+      menu = "#222330",
+      visual = "#303040",
+      gutter_fg = "#606070",
+      nontext = "#606070",
+      white = "#F7F7FD",
+      black = "#222330",
+      
+      -- Variants
+      svalbard_bg = "#101117",
+      svalbard_menu = "#101117",
+      svalbard_black = "#101117",
+      svalbard_selection = "#181922",
+      svalbard_visual = "#181922",
+
+      kiruna_bg = "#181922",
+      kiruna_menu = "#181922",
+      kiruna_black = "#181922",
+      kiruna_selection = "#222330",
+      kiruna_visual = "#222330",
+
+      reykjavik_bg = "#222330",
+      reykjavik_menu = "#222330",
+      reykjavik_black = "#222330", 
+      reykjavik_selection = "#303040",
+      reykjavik_visual = "#303040",
   },
   -- show the '~' characters after the end of buffers
   show_end_of_buffer = true, -- default false
@@ -128,6 +173,11 @@ norrsken.setup({
   italics {
     comments = true, -- default false
     keywords = true, -- default false
+  },
+  -- Configure different variants for light/dark background
+  background = {
+    light = "reykjavik", -- variant to use when vim.o.background is "light"
+    dark = "svalbard",   -- variant to use when vim.o.background is "dark"
   },
   -- overrides the default highlights with table see `:h synIDattr`
   overrides = {},
@@ -145,3 +195,26 @@ norrsken.setup({
   -- end,
 })
 ```
+
+### Automatic Light/Dark Mode Switching
+
+You can configure the theme to automatically use different variants based on whether you're in light or dark mode:
+
+```lua
+-- Setup norrsken with automatic variant switching
+require("norrsken").setup({
+  background = {
+    light = "reykjavik", -- Use reykjavik variant in light mode
+    dark = "svalbard",   -- Use svalbard variant in dark mode
+  },
+})
+
+-- Apply the colorscheme
+vim.cmd([[colorscheme norrsken]])
+
+-- When you switch backgrounds, the theme variant will change automatically
+vim.o.background = "dark"   -- Will use svalbard variant
+vim.o.background = "light"  -- Will use reykjavik variant
+```
+
+You can specify any of the variants ("svalbard", "kiruna", or "reykjavik") for either light or dark mode.
