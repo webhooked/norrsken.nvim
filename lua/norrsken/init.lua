@@ -53,6 +53,16 @@ local SELECTION_GROUPS = {
    { name = "NvimTreeCursorLine", color = "selection" }
 }
 
+-- Snacks Picker-related highlight groups that need forced menu color updates
+local SNACKS_MENU_GROUPS = {
+   "SnacksPicker",
+   "SnacksPickerNormal",
+   "SnacksPickerBox",
+   "SnacksPickerList",
+   "SnacksPickerInput",
+   "SnacksPickerPreview"
+}
+
 local function apply_term_colors(colors)
    g.terminal_color_0 = colors.black
    g.terminal_color_1 = colors.flare
@@ -98,18 +108,30 @@ local function apply_variant(palette, variant)
       result.black = palette.svalbard_black
       result.selection = palette.svalbard_selection
       result.visual = palette.svalbard_visual
+      result.fg = palette.svalbard_fg
+      result.comment = palette.svalbard_comment
+      result.gutter_fg = palette.svalbard_gutter_fg
+      result.nontext = palette.svalbard_nontext
    elseif variant == "kiruna" then
       result.bg = palette.kiruna_bg
       result.menu = palette.kiruna_menu
       result.black = palette.kiruna_black
       result.selection = palette.kiruna_selection
       result.visual = palette.kiruna_visual
+      result.fg = palette.kiruna_fg
+      result.comment = palette.kiruna_comment
+      result.gutter_fg = palette.kiruna_gutter_fg
+      result.nontext = palette.kiruna_nontext
    elseif variant == "reykjavik" then
       result.bg = palette.reykjavik_bg
       result.menu = palette.reykjavik_menu
       result.black = palette.reykjavik_black
       result.selection = palette.reykjavik_selection
       result.visual = palette.reykjavik_visual
+      result.fg = palette.reykjavik_fg
+      result.comment = palette.reykjavik_comment
+      result.gutter_fg = palette.reykjavik_gutter_fg
+      result.nontext = palette.reykjavik_nontext
    end
    
    return result
@@ -169,6 +191,14 @@ local function apply(configs)
       local existing = vim.api.nvim_get_hl(0, { name = group.name })
       if existing then
          vim.api.nvim_set_hl(0, group.name, { bg = colors[group.color] })
+      end
+   end
+
+   -- Force apply menu color to Snacks Picker highlight groups
+   for _, group_name in ipairs(SNACKS_MENU_GROUPS) do
+      local existing = vim.api.nvim_get_hl(0, { name = group_name })
+      if existing then
+         vim.api.nvim_set_hl(0, group_name, { bg = colors.menu })
       end
    end
 end

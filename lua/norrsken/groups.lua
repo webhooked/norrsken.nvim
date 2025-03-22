@@ -290,7 +290,7 @@ local function setup(configs)
       TelescopePreviewBorder = { fg = colors.comment },
       TelescopeSelection = { fg = colors.white, bg = colors.selection },
       TelescopeMultiSelection = { fg = colors.twilight, bg = colors.selection },
-      TelescopeNormal = { fg = colors.fg, bg = colors.bg },
+      TelescopeNormal = { fg = colors.fg, bg = colors.menu },
       TelescopeMatching = { fg = colors.aurora },
       TelescopePromptPrefix = { fg = colors.twilight },
       TelescopeResultsDiffDelete = { fg = colors.flare },
@@ -301,8 +301,8 @@ local function setup(configs)
       FlashLabel = { bg = colors.flare, fg = colors.bright_white },
 
       -- NvimTree
-      NvimTreeNormal = { fg = colors.fg, bg = colors.menu },
-      NvimTreeVertSplit = { fg = colors.bg, bg = colors.bg },
+      NvimTreeNormal = { fg = colors.fg, bg = "NONE" },
+      NvimTreeVertSplit = { fg = colors.menu, bg = "NONE" },
       NvimTreeRootFolder = { fg = colors.fg, bold = true },
       NvimTreeGitDirty = { fg = colors.twilight },
       NvimTreeGitNew = { fg = colors.bright_green },
@@ -319,8 +319,8 @@ local function setup(configs)
       NvimTreeEndOfBuffer = endOfBuffer,
 
       -- NeoTree
-      NeoTreeNormal = { fg = colors.fg, bg = colors.menu },
-      NeoTreeNormalNC = { fg = colors.fg, bg = colors.menu },
+      NeoTreeNormal = { fg = colors.fg, bg = "NONE" },
+      NeoTreeNormalNC = { fg = colors.fg, bg = "NONE" },
       NeoTreeDirectoryName = { fg = colors.fg },
       NeoTreeGitUnstaged = { fg = colors.bright_magenta },
       NeoTreeGitModified = { fg = colors.bright_magenta },
@@ -546,14 +546,15 @@ local function setup(configs)
       NotifyWarnBorder = { fg = "#785637" },
 
       -- Snacks Picker
+      SnacksPicker = { bg = colors.menu },
       SnacksPickerTitle = { fg = colors.glow, bg = colors.menu },
-      SnacksPickerBorder = { fg = colors.comment },
-      SnacksPickerNormal = { fg = colors.fg, bg = colors.comment },
+      SnacksPickerBorder = { fg = colors.visual },
+      SnacksPickerNormal = { fg = colors.fg, bg = colors.menu },
       SnacksPickerMatch = { fg = colors.aurora },
       SnacksPickerCursor = { fg = colors.bg, bg = colors.glow },
       SnacksPickerSelected = { fg = colors.white, bg = colors.selection },
       SnacksPickerPrompt = { fg = colors.twilight },
-      SnacksPickerDim = { fg = colors.comment },
+      SnacksPickerDim = { fg = colors.selection },
    }
 end
 

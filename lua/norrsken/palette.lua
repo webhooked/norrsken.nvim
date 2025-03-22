@@ -29,14 +29,14 @@ return {
    svalbard_bg = "#101117",
    svalbard_menu = "#101117",
    svalbard_black = "#101117",
-   svalbard_selection = "#181922",
-   svalbard_visual = "#181922",
+   svalbard_selection = "#222330",
+   svalbard_visual = "#222330",
 
    kiruna_bg = "#181922",
    kiruna_menu = "#181922",
    kiruna_black = "#181922",
-   kiruna_selection = "#222330",
-   kiruna_visual = "#222330",
+   kiruna_selection = "#303040",
+   kiruna_visual = "#303040",
 
    reykjavik_bg = "#222330",
    reykjavik_menu = "#222330",
