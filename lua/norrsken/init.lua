@@ -20,8 +20,8 @@ local tbl_deep_extend = vim.tbl_deep_extend
 ---@field overrides HighlightGroups | fun(colors: Palette): HighlightGroups
 local DEFAULT_CONFIG = {
    italics = {
-      comments = false,
-      keywords = false,
+      comments = true,
+      keywords = true,
    },
    transparent_bg = false,
    show_end_of_buffer = false,

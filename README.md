@@ -25,6 +25,7 @@
 - [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+- [Snacks](https://github.com/onur-ozkan/snacks.nvim) (Supports all UI components including Picker, Dashboard and Notifier)
 
 ## ⬇️ Installation
 
@@ -77,6 +78,8 @@ colorscheme norrsken-svalbard
 " Medium dark (Kiruna variant)
 colorscheme norrsken-kiruna
 ```
+
+The theme properly updates UI components like Snacks Picker and NeoTree to match your selected variant. All background colors of floating windows and UI elements are consistently applied across variants.
 
 If you are using [`lualine`](https://github.com/hoob3rt/lualine.nvim), you can also enable the provided theme:
 
@@ -171,8 +174,8 @@ norrsken.setup({
   lualine_bg_color = "#101012", -- default nil
   -- set italics
   italics {
-    comments = true, -- default false
-    keywords = true, -- default false
+    comments = false, -- default true
+    keywords = false, -- default true
   },
   -- Configure different variants for light/dark background
   background = {

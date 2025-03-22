@@ -66,7 +66,7 @@ local function setup(configs)
       StorageClass = { fg = colors.twilight },
       Structure = { fg = colors.glow },
       TypeDef = { fg = colors.glow },
-      Special = { fg = colors.aurora, italic = true },
+      Special = { fg = colors.aurora},
       SpecialComment = { fg = colors.comment, italic = true },
       Error = { fg = colors.bright_red },
       Todo = { fg = colors.twilight, bold = true, italic = true },
@@ -154,8 +154,8 @@ local function setup(configs)
       ["@function.builtin"] = { fg = colors.glow },
       ["@function"] = { fg = colors.glow },
       ["@function.macro"] = { fg = colors.aurora },
-      ["@variable.parameter"] = { fg = colors.glow, italic = true },
-      ["@variable.parameter.reference"] = { fg = colors.glow, italic = true },
+      ["@variable.parameter"] = { fg = colors.glow },
+      ["@variable.parameter.reference"] = { fg = colors.glow },
       ["@function.method"] = { fg = colors.glow },
       ["@variable.member"] = { fg = colors.glow },
       ["@property"] = { fg = colors.shimmer },
@@ -178,11 +178,11 @@ local function setup(configs)
       ["@keyword.include"] = { fg = colors.twilight, italic = configs.italics.keywords },
 
       ["@variable"] = { fg = colors.glow },
-      ["@variable.builtin"] = { fg = colors.glow, italic = true },
+      ["@variable.builtin"] = { fg = colors.glow },
 
       ["@markup"] = { fg = colors.shimmer },
       ["@markup.strong"] = { fg = colors.glow, bold = true }, -- bold
-      ["@markup.emphasis"] = { fg = colors.aurora, italic = true }, -- italic
+      ["@markup.emphasis"] = { fg = colors.aurora }, -- italic
       ["@markup.underline"] = { fg = colors.shimmer },
       ["@markup.heading"] = { fg = colors.comment, bold = true }, -- title
       ["@markup.raw"] = { fg = colors.glow }, -- inline code
@@ -215,7 +215,7 @@ local function setup(configs)
       ["@lsp.type.macro"] = { fg = colors.glow },
       ["@lsp.type.method"] = { fg = colors.glow },
       ["@lsp.type.namespace"] = { fg = colors.shimmer },
-      ["@lsp.type.parameter"] = { fg = colors.glow, italic = true },
+      ["@lsp.type.parameter"] = { fg = colors.glow },
       ["@lsp.type.property"] = { fg = colors.shimmer },
       ["@lsp.type.struct"] = { fg = colors.glow },
       ["@lsp.type.type"] = { fg = colors.fg },
@@ -401,10 +401,10 @@ local function setup(configs)
       BufferTabpageFill = { fg = colors.nontext, bg = colors.black },
       BufferCurrentSign = { fg = colors.twilight },
       BufferCurrentTarget = { fg = colors.flare },
-      BufferInactive = { fg = colors.comment, bg = colors.black, italic = true },
-      BufferInactiveIndex = { fg = colors.nontext, bg = colors.black, italic = true },
-      BufferInactiveMod = { fg = colors.aurora, bg = colors.black, italic = true },
-      BufferInactiveSign = { fg = colors.nontext, bg = colors.black, italic = true },
+      BufferInactive = { fg = colors.comment, bg = colors.black },
+      BufferInactiveIndex = { fg = colors.nontext, bg = colors.black },
+      BufferInactiveMod = { fg = colors.aurora, bg = colors.black },
+      BufferInactiveSign = { fg = colors.nontext, bg = colors.black },
       BufferInactiveTarget = { fg = colors.flare, bg = colors.black, bold = true },
 
       -- Compe
